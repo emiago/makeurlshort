@@ -1,0 +1,13 @@
+{{define "content"}}
+    <h1>Shortener URL</h1>
+    <form method="POST">
+        <label>URL:</label><br />
+        <input type="text" name="urlinput"><br />
+        <input type="submit">
+    </form>
+    <h4>{{.Error}}</h4>
+    <ul>
+    {{range .ShortUrls}}
+        <li ><a title="{{.OriginalUrl}}" href="{{.OriginalUrl}}" >{{.Url}}</a></li>
+    {{end}}
+{{end}}
