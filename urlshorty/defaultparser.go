@@ -6,10 +6,6 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-type UrlShortener interface {
-	Parse(longurl string) (string, error)
-}
-
 type DefaultParser struct {
 	Domain string
 }
