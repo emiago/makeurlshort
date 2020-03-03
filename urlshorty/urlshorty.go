@@ -12,8 +12,12 @@ var (
 
 func init() {
 	parser = &DefaultParser{
-		Domain: "localhost",
+		Domain: "http://localhost:8080",
 	}
+}
+
+func SetParser(p UrlShortener) {
+	parser = p
 }
 
 func Parse(longurl string) (string, error) {

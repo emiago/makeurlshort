@@ -5,6 +5,7 @@ import (
 	"flixwebtest/urlshorty"
 	"fmt"
 	"net/http"
+	"net/url"
 	"text/template"
 )
 
@@ -69,4 +70,19 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, details)
+}
+
+func RedirectHandler(w http.ResponseWriter, r *http.Request) {
+	ruri := r.URL.RequestURI()
+
+	shortUrls, _ := shorturl.GetShortUrls() //This should be refactored by using map and key as url
+	for _, s := range shortUrls {
+		myurl, _ := url.Parse(s.Url)
+		if myurl.RequestURI() == ruri {
+			http.Redirect(w, r, s.OriginalUrl, 301)
+			return
+		}
+	}
+
+	http.Error(w, "not found", http.StatusNotFound)
 }

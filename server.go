@@ -46,6 +46,7 @@ func serverRun() {
 	layout = template.Must(template.ParseFiles("templates/layout.html"))
 
 	r.HandleFunc("/", FormHandler)
+	r.HandleFunc("/r/{id}", RedirectHandler)
 
 	srv := &http.Server{
 		Handler: r,

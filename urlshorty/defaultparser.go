@@ -12,5 +12,5 @@ type DefaultParser struct {
 
 func (p *DefaultParser) Parse(longurl string) (string, error) {
 	uid := uuid.NewV4()
-	return fmt.Sprintf("http://%s/%s", p.Domain, uid.String()), nil
+	return fmt.Sprintf("%s/%s", p.Domain, uid.String()), nil
 }
